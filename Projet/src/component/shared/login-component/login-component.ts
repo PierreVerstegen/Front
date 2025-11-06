@@ -28,8 +28,8 @@ valueBoolean = false;
 constructor()
 {
   this.loginForm = this.fb.group({
-    email : ['',[ Validators.required]],
-    password : ['',[Validators.required,Validators.minLength(4)]]
+    email : ['',[ Validators.required, Validators.email]],
+    password : ['',[Validators.required]]
   })
 
   // copie de reference du signal du service
@@ -44,10 +44,19 @@ toggleForm(){
   this.isOpen.update(value => !value);
 }
 
-login(){
+onSubmit(){
   if(this.loginForm.valid){
     // si le formulaire est valide j'appelle la methode login du service
-this.authService.login(this.loginForm.value.email,this.loginForm.value.password);
+this.authService.login(this.loginForm.value.email,this.loginForm.value.password).subscribe({
+
+        error : (error) => {
+          console.log(error);
+        },
+        complete : () => {
+          console.log('complete');
+        }
+
+});
   }
 }
 

@@ -6,11 +6,9 @@
         @if(!isLoggedSignal()){
 
 
-            <p> admin : admin</p>
-            <p> user : user</p>
 
             <!-- formulaire de connexion -->
-            <form (mouseleave)="toggleForm()" [formGroup]="loginForm" (ngSubmit)="login()">
+            <form (mouseleave)="toggleForm()" [formGroup]="loginForm" (ngSubmit)="onSubmit()">
 
                 <div>
                     <label for="">email</label>

@@ -1,10 +1,11 @@
+<div class="flex flex-col min-h-screen">
+  <app-navbar-component></app-navbar-component>
 
-<app-navbar-component></app-navbar-component>
+  <main class="flex-1">
+    <router-outlet></router-outlet>
+  </main>
 
-<router-outlet></router-outlet>
-
-<div class="d-flex flex-column min-vh-100">
-    <footer class="mt-auto">
-        <app-footer-component></app-footer-component>
-    </footer>
+  <footer>
+    <app-footer-component></app-footer-component>
+  </footer>
 </div>

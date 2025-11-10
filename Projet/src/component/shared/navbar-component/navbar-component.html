@@ -1,33 +1,77 @@
-<ul ngbNav #nav="ngbNav" [activeId]="2" class="nav-tabs justify-content-center">
+<nav class="bg-white shadow-lg sticky top-0 z-50">
+  <div class="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+    <div class="flex justify-between h-16">
 
-	<li>
-		<button routerLink="" class="nav-link" ngbDropdownItem>home</button>
-	</li>
+      <!-- Logo -->
+      <div class="flex items-center">
+  <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+    <img src="assets/images/full-inventory-logo.png"
+     alt="Full Inventory Logo"
+     class="w-10 h-10 object-contain" />
 
-	<li ngbDropdown class="nav-item" role="presentation">
-		<button type="button" class="nav-link" ngbDropdownToggle>Demo</button>
-		<div ngbDropdownMenu>
-			<button routerLink="demo/bootstrap" ngbDropdownItem>Demo bootstrap</button>
-			<div class="dropdown-divider"></div>
-		</div>
-	</li>
+    <span>Full Inventory</span>
+  </a> 
+</div>
 
-	<!-- Affichage  du menu uniquement si l'utilisateur est admin -->
-	@if(isAdminSignalNavbar()){
-	
-	<li ngbDropdown class="nav-item" role="presentation">
-		<button type="button" class="nav-link" ngbDropdownToggle>Exo</button>
-		<div ngbDropdownMenu>
-			<button routerLink="exo/compteur" ngbDropdownItem>Exo Compteur</button>
-			
-			<div class="dropdown-divider"></div>
-		</div>
-	</li>
-	}
+      <!-- Liens Desktop -->
+      <div class="hidden md:flex items-center space-x-8">
+        <a routerLink="/" routerLinkActive="text-indigo-600 font-semibold"
+           class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+        <a routerLink="/about" routerLinkActive="text-indigo-600 font-semibold"
+           class="text-gray-700 hover:text-indigo-600 transition">About</a>
+        <a routerLink="/contact" routerLinkActive="text-indigo-600 font-semibold"
+           class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
 
-	
-	<li>
-		<app-login-component></app-login-component>
-	</li>
+        <!-- Bouton Profil / Login (Desktop) -->
+        <div class="relative">
+          <button 
+            (click)="toggleLogin()"
+            class="flex items-center space-x-2 text-gray-700 hover:text-indigo-600 transition font-medium">
+            <svg class="w-5 h-5" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+              <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2"
+                d="M16 7a4 4 0 11-8 0 4 4 0 018 0zM12 14a7 7 0 00-7 7h14a7 7 0 00-7-7z" />
+            </svg>
+            <span>{{ loginComponent?.isLoggedSignal() ? 'Profile' : 'Login' }}</span>
+          </button>
 
-</ul>
+          <!-- Dropdown avec ton composant existant -->
+          @if (isLoginOpen()) {
+            <div 
+              class="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl p-6 border border-gray-200 
+                     transition-all duration-300 origin-top-right z-40"
+              (mouseleave)="closeLogin()">
+              <app-login-component #loginComponent></app-login-component>
+            </div>
+          }
+        </div>
+      </div>
+
+      <!-- Bouton Mobile -->
+      <div class="md:hidden flex items-center">
+        <button (click)="toggleMobileMenu()" class="text-gray-700 hover:text-indigo-600">
+          <svg [class.hidden]="isMobileOpen()" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
+          </svg>
+          <svg [class.hidden]="!isMobileOpen()" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
+          </svg>
+        </button>
+      </div>
+    </div>
+  </div>
+
+  <!-- Menu Mobile -->
+  @if (isMobileOpen()) {
+    <div class="md:hidden bg-white border-t border-gray-200">
+      <div class="px-2 pt-2 pb-3 space-y-1">
+        <a routerLink="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Home</a>
+        <a routerLink="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">About</a>
+        <a routerLink="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Contact</a>
+        
+        <div class="border-t pt-3 mt-3">
+          <app-login-component></app-login-component>
+        </div>
+      </div>
+    </div>
+  }
+</nav>

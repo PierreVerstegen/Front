@@ -1,34 +1,35 @@
-import { Component, inject, signal } from '@angular/core';
-import { RouterLink } from '@angular/router';
-import { NgbNavModule, NgbDropdownModule } from '@ng-bootstrap/ng-bootstrap';
-import { LoginComponent } from "../login-component/login-component";
-import { AuthService } from '../../../core/service/auth-service/service-auth';
+import { Component, signal, ViewChild } from '@angular/core';
+import { RouterLink, RouterLinkActive } from '@angular/router';
+import { LoginComponent } from '../../shared/login-component/login-component';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-navbar-component',
+  standalone: true,
   imports: [
+    CommonModule,
     RouterLink,
-    NgbNavModule,
-    NgbDropdownModule,
-    LoginComponent
-],
+    RouterLinkActive,
+    LoginComponent  // Importé ici
+  ],
   templateUrl: './navbar-component.html',
   styleUrl: './navbar-component.css'
 })
 export class NavbarComponent {
+  @ViewChild('loginComponent') loginComponent?: LoginComponent;
 
-// declaration d'un signal pour verifier le role de l'utilisateur ( de type signal)
-isAdminSignalNavbar = signal<boolean>(false);
+  isMobileOpen = signal(false);
+  isLoginOpen = signal(false);
 
-// variable classique de type boolean
-bool : boolean = false;
+  toggleMobileMenu() {
+    this.isMobileOpen.update(v => !v);
+  }
 
-// injection du service AuthService
-private readonly authService = inject(AuthService)
+  toggleLogin() {
+    this.isLoginOpen.update(v => !v);
+  }
 
-constructor(){
-// copie de la reférence du signal du service AuthService dans le signal du composant NavbarComponent
-this.isAdminSignalNavbar = this.authService.isAdminSignalService
-
-}
+  closeLogin() {
+    this.isLoginOpen.set(false);
+  }
 }

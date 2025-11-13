@@ -1,0 +1,14 @@
+@if (players.length ===0){
+    <div class=" border rounded shadow m-2">Nothing to show here
+        <button class="btn justify-content-center border m-1" (click)="getPlayer()">get list</button>
+    </div>
+}@else{
+    <div class="d-flex justify-content-center shadow rounded m-2 border p-3">
+@for (p of players; track p){
+    <div class="border rounded shadow m-2">
+    <p> {{p.character.name}}</p>
+    <button class="btn justify-content-center border m-1" (click)="getPlayerById(p.player_id)">Select player</button>
+    </div>
+}</div>}
+
+

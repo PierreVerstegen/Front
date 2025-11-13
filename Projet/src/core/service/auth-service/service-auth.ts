@@ -2,16 +2,17 @@ import { Injectable, signal } from '@angular/core';
 import { LoginRequest, AuthResponse } from '../../../models/login.model';
 import { HttpClient } from '@angular/common/http';
 import { Router } from '@angular/router';
-import { tap, catchError, throwError, Observable } from 'rxjs';
+import { tap, catchError, throwError, Observable, BehaviorSubject } from 'rxjs';
 
 @Injectable({
   providedIn: 'root'
 })
 export class AuthService {
 
-private apiUrl = 'http://localhost:8000/api/users'; // Adapte à ton backend
-private tokenKey = 'auth_token';
+private apiUrl = 'http://localhost:8000/api/users';
+private tokenKey = 'token';
 private roleKey = 'user_role';
+private tokenSubject = new BehaviorSubject<string | null>(null);
 
 // _____________Signaux réactifs____________________
   // declaration d'un signal pour permettre de transmettre l'information en temps réel
@@ -23,15 +24,22 @@ isAdminSignalService = signal<boolean>(false);
 
 constructor(
   private http: HttpClient,
-  private router: Router
+  private router: Router,
+  
 ) {
+  // Charger le token au démarrage  
 this.initAuthFromStorage();
+
 }
 
 // Initialisation au démarrage : on définit les fonctions en dehors et on l'appelle dnas le constructeur
   private initAuthFromStorage() {
     const token = localStorage.getItem(this.tokenKey);
+      if (token) {
+      this.tokenSubject.next(token);
+    }
     const role = localStorage.getItem(this.roleKey) as 'admin' | 'user' | null;
+    
 
     if (token && role) {
       this.isLoggedSignalService.set(true);
@@ -47,15 +55,17 @@ this.initAuthFromStorage();
 
 
         // Stockage sécurisé
-        localStorage.setItem(this.tokenKey, response.token);
-        localStorage.setItem(this.roleKey, response.role);
+        localStorage.setItem(this.tokenKey, response.access); // Est-ce bien tjs nécessaire ?
+        // localStorage.setItem(this.roleKey, response.role);
+        this.tokenSubject.next(response.access)
 
         // Mise à jour des signaux
         this.isLoggedSignalService.set(true);
-        this.isAdminSignalService.set(response.role === 'admin');
+        // this.isAdminSignalService.set(response.role === 'admin');
 
         // Redirection
-        // this.router.navigate([response.role === 'admin' ? '/admin' : '/dashboard']); => a voir plus tard comment on gère les roles
+        //  this.router.navigate([response.role === 'admin' ? '/admin' : '/app-player-component']);
+         this.router.navigate(['/app-player-component']); // => a voir plus tard comment on gère les roles
       }),
       catchError(error => { // équivalent de except
         console.error('Login failed', error);
@@ -88,9 +98,12 @@ this.initAuthFromStorage();
   }
 
   // Utilitaires
+  // getToken(): string | null {
+  //   return localStorage.getItem(this.tokenKey);}
+  
   getToken(): string | null {
-    return localStorage.getItem(this.tokenKey);
-  }
+  return this.tokenSubject.value;
+  };
 
   getRole(): 'admin' | 'user' | null {
     return localStorage.getItem(this.roleKey) as 'admin' | 'user' | null;

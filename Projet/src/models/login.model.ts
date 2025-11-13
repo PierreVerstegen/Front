@@ -1,9 +1,12 @@
+import { UserResponse } from "./user.model";
+
 export interface LoginRequest {
   username: string;
   password: string;
 }
 
 export interface AuthResponse {
-  token: string;
-  role: 'admin' | 'user';
+  access: string;
+  refresh : string;
+  user : UserResponse;
 }

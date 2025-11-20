@@ -22,7 +22,7 @@
         </div>
 
         <div>
-          <label class="block text-sm font-medium text-gray-700">Mot de passe</label>
+          <label class="block text-sm font-medium text-gray-700">Password</label>
           <input 
             type="password" 
             formControlName="password"
@@ -33,16 +33,16 @@
         <button 
           type="submit"
           class="w-full bg-indigo-600 hover:bg-indigo-700 text-white font-semibold py-2.5 rounded-md transition">
-          Se connecter
+          Connect
         </button>
       </form>
     } @else {
       <div class="text-center space-y-4">
-        <p class="text-lg font-medium text-gray-800">Connecté !</p>
+        <p class="text-lg font-medium text-gray-800">Connected !</p>
         <button 
           (click)="logout()"
           class="w-full bg-red-600 hover:bg-red-700 text-white font-semibold py-2.5 rounded-md transition">
-          Déconnexion
+          Disconnect
         </button>
       </div>
     }
@@ -54,6 +54,6 @@
   <button 
     (click)="toggleForm()" 
     class="fixed top-4 right-4 z-50 bg-indigo-600 hover:bg-indigo-700 text-white font-medium py-2 px-4 rounded-lg shadow-lg transition">
-    {{ isLoggedSignal() ? 'Profil' : 'Login' }}
+    {{ isLoggedSignal() ? 'Profile' : 'Login' }}
   </button>
 }

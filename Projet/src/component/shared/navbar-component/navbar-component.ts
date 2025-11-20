@@ -21,10 +21,6 @@ export class NavbarComponent {
   isMobileOpen = signal(false);
   isLoginOpen = signal(false);
 
-  toggleMobileMenu() {
-    this.isMobileOpen.update(v => !v);
-  }
-
   toggleLogin() {
     this.isLoginOpen.update(v => !v);
   }

@@ -1,1 +1,116 @@
-<p>player-creation-component works!</p>
+<div class="min-h-screen bg-gray-50 py-12 px-4">
+    <div class="max-4xl mx-auto">
+    <div class="bg-white shadow-xl rounded-lg overflow-hidden">
+    <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-8">
+        <h1 class="text-4xl font-bold">Character creation</h1>
+        @if (!charac_model) {<p class="mt-2 opacity-90">Choose a character model</p>
+    <!-- Buttons -->
+    <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12">
+      <!-- Button 1 : Select Brigandyne -->
+      <a (click)="select_BRIG()" class="group relative inline-flex items-center justify-center w-80 h-20 
+                    bg-gradient-to-r from-emerald-500 to-teal-600 
+                    text-white text-2xl font-semibold rounded-2xl 
+                    shadow-2xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-emerald-500/50">
+        <span class="relative z-10">Brigandyne</span>
+        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+      </a>
+
+      <!-- Button 2 : Select DND -->
+      <a (click)="select_DND()" class="group relative inline-flex items-center justify-center w-80 h-20 
+                    bg-gradient-to-r from-purple-600 to-pink-600 
+                    text-white text-2xl font-semibold rounded-2xl 
+                    shadow-2xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-purple-500/50">
+        <span class="relative z-10">Dungeons 'n' Dragons</span>
+        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+      </a>
+
+      <!-- Button 3 : Select DCC -->
+      <a (click)="select_DCC()" class="group relative inline-flex items-center justify-center w-80 h-20 
+                    bg-gradient-to-r from-emerald-500 to-teal-600 
+                    text-white text-2xl font-semibold rounded-2xl 
+                    shadow-2xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-emerald-500/50">
+        <span class="relative z-10">Dungeon Crawler Classic</span>
+        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+      </a>
+    </div>
+    }
+    </div>
+@if (charac_model){
+            <div class='bg-gradient-to-r from-indigo-600 to-purple-600'>
+                <p class="mt-2 px-8 py-3 text-2xl opacity-90 text-white font-semibold">
+                    Rule set selected : <br>
+                    @if (charac_model === 'BRIG'){
+                        Brigandyne
+                    }
+                    @if (charac_model === 'DND'){
+                        Dungeons 'n' Dragons
+                    }
+                    @if (charac_model === 'DCC'){
+                        Dungeon Crawler Classic
+                    }
+                </p>
+                <button (click)="change_model()"
+                class="mt-8 px-8 py-3 bg-red-600/80 hover:bg-red-500 text-white font-semibold 
+                        rounded-xl shadow-lg transition hover:scale-105">Change Rule set
+                </button>
+            </div>
+            <app-brig-form-component></app-brig-form-component>
+    <div class="p-8 space-y-8">
+        <!-- Informations partagées par tous les types de personnages -->
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+            
+        <div>
+            <label class for="name" class="block text-sm font-medium text-gray-700">Character name</label>
+            <input type="text" id="name" [(ngModel)]="character().charac_name" name="name" required
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border">
+          </div>
+
+          <!-- <div>
+            <label for="charac_class" class="block text-sm font-medium text-gray-700">Classe</label>
+            <input type="text" id="charac_class" [(ngModel)]="character().charac_class" name="charac_class" required
+                   placeholder="Guerrier, Mage, Voleur..."
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border">
+          </div> -->
+
+          <div>
+            <label for="charac_money" class="block text-sm font-medium text-gray-700">Wealth</label>
+            <input type="number" id="charac_money" [(ngModel)]="character().charac_money" name="charac_money" min="0"
+            placeholder="So basically my parents died and now I seek revenge ..."
+                   class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border">
+          </div>
+
+        <div>
+          <label for="charac_bio" class="block text-sm font-medium text-gray-700">Character Bio</label>
+          <textarea id="charac_bio" [(ngModel)]="character().charac_bio" name="charac_bio" rows="5"
+                    class="mt-1 block w-full rounded-md border-gray-300 shadow-sm focus:border-indigo-500 focus:ring-indigo-500 sm:text-sm px-3 py-2 border"></textarea>
+        </div>
+
+        </div>
+
+        <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+
+            @if (charac_model === 'BRIG'){
+<div>
+
+</div>
+
+
+
+            }
+
+
+
+
+
+        </div>
+
+
+
+    </div>}
+
+    </div>
+    </div>
+</div>

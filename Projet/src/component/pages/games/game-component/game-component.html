@@ -3,12 +3,12 @@
 
     <!-- Titre principal -->
     <h2 class="text-5xl md:text-7xl font-black text-center bg-clip-text text-transparent 
-              bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-500">
-      Choose your Hero
+               bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-500">
+      Game List
     </h2>
 
     <!-- === PERSONNAGE SÉLECTIONNÉ (en haut et bien visible dès qu’il existe) === -->
-    @if (playerToFind) {
+    @if (gameToFind) {
       <div class="relative overflow-hidden rounded-3xl bg-black/80 backdrop-blur-xl 
                   border-2 border-emerald-600/70 shadow-2xl shadow-emerald-700/60 
                   transform transition-all duration-700 scale-100 animate-in fade-in slide-in-from-top-4">
@@ -18,45 +18,45 @@
         
         <div class="relative p-10 text-center">
           <h3 class="text-4xl md:text-5xl font-black text-emerald-400 mb-8 tracking-wider">
-            Hero Selected ⚔️
+            Game Selected 👾
           </h3>
           
           <div class="grid grid-cols-1 md:grid-cols-3 gap-10 text-xl">
             <div class="space-y-2">
               <p class="text-gray-400 text-lg">Name</p>
-              <p class="text-4xl font-bold text-white">{{ playerToFind.character.name }}</p>
+              <p class="text-4xl font-bold text-white">{{ gameToFind.game_name }}</p>
             </div>
             <div class="space-y-2">
-              <p class="text-gray-400 text-lg">Class</p>
-              <p class="text-3xl font-bold text-purple-400">{{ playerToFind.character.charac_class }}</p>
+              <p class="text-gray-400 text-lg">Game Master</p>
+              <p class="text-3xl font-bold text-purple-400">{{ gameToFind.game_master }}</p>
             </div>
             <div class="space-y-2">
-              <p class="text-gray-400 text-lg">Level</p>
-              <p class="text-5xl font-black text-emerald-400">{{ playerToFind.character.level }}</p>
+              <p class="text-gray-400 text-lg">Rule set</p>
+              <p class="text-5xl font-black text-emerald-400">{{ gameToFind.game_rules }}</p>
             </div>
           </div>
 
           <!-- Petit bouton pour désélectionner (optionnel mais pratique) -->
-          <button (click)="playerToFind = undefined"
+          <button (click)="gameToFind = undefined"
                   class="mt-8 px-8 py-3 bg-red-600/80 hover:bg-red-500 text-white font-semibold 
-                        rounded-xl shadow-lg transition hover:scale-105">
-            Change Hero
+                         rounded-xl shadow-lg transition hover:scale-105">
+            Change game ↔
           </button>
         </div>
       </div>
     }
 
     <!-- === ÉTAT VIDE === -->
-    @if (players.length === 0) {
+    @if (games.length === 0) {
       <div class="text-center py-32">
         <div class="inline-block p-16 bg-black/50 backdrop-blur-md rounded-3xl 
                     border border-purple-800/60 shadow-2xl">
-          <p class="text-3xl text-gray-300 mb-10">No heroes in the sanctuary yet…</p>
-          <button (click)="getPlayer()"
+          <p class="text-3xl text-gray-300 mb-10">No games to show yet…</p>
+          <button (click)="getGames()"
                   class="group relative px-12 py-6 bg-gradient-to-r from-emerald-500 to-teal-600 
                          text-white text-2xl font-bold rounded-2xl shadow-2xl
                          transition-all duration-300 hover:scale-110 hover:shadow-emerald-500/80">
-            <span class="relative z-10">Load Heroes</span>
+            <span class="relative z-10">Search games</span>
             <div class="absolute inset-0 rounded-2xl bg-white opacity-0 
                         group-hover:opacity-30 transition-opacity"></div>
           </button>
@@ -68,43 +68,43 @@
     @else {
       <div>
         <h3 class="text-3xl font-bold text-center text-gray-300 mb-12">
-          @if (!playerToFind) { Select your champion } 
+          @if (!gameToFind) { Select your game } 
           @else { Or choose another one… }
         </h3>
 
         <div class="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 xl:grid-cols-4 gap-8">
-          @for (p of players; track p.player_id) {
+          @for (g of games; track g.game_id) {
             <div class="group relative bg-black/60 backdrop-blur-md border 
-                        {{ playerToFind?.player_id === p.player_id ? 'border-emerald-500 shadow-emerald-500/70' : 'border-purple-700/50' }}
+                        {{ gameToFind?.game_id === g.game_id ? 'border-emerald-500 shadow-emerald-500/70' : 'border-purple-700/50' }}
                         rounded-2xl overflow-hidden shadow-xl
                         transform transition-all duration-500 hover:scale-105 
                         hover:shadow-2xl hover:shadow-purple-600/60">
               
               <!-- Indicateur de sélection -->
-              @if (playerToFind?.player_id === p.player_id) {
+              @if (gameToFind?.game_id === g.game_id) {
                 <div class="absolute top-0 left-0 right-0 h-1 bg-gradient-to-r from-emerald-400 to-teal-500"></div>
                 <div class="absolute inset-0 ring-4 ring-emerald-500/30 rounded-2xl"></div>
               }
 
-              <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-emerald-900/10 
+            <div class="absolute inset-0 bg-gradient-to-br from-purple-900/20 to-emerald-900/10 
                           opacity-0 group-hover:opacity-100 transition-opacity duration-700"></div>
 
               <div class="relative p-8 text-center space-y-6">
-                <h4 class="text-2xl font-bold text-white">{{ p.character.name }}</h4>
+                <h4 class="text-2xl font-bold text-white">{{ g.game_name }}</h4>
                 
                 <div class="space-y-2 text-gray-300">
-                  <p class="text-lg">{{ p.character.charac_class }}</p>
-                  <p class="text-3xl font-bold text-emerald-400">Lvl {{ p.character.level }}</p>
+                  <p class="text-lg">{{ g.game_master }}</p>
+                  <p class="text-3xl font-bold text-emerald-400">Rules : {{ g.game_rules }}</p>
                 </div>
 
-                <button (click)="getPlayerById(p.player_id)"
-                        [class.opacity-60]="playerToFind?.player_id === p.player_id"
+                <button (click)="getGameById(g.game_id)"
+                        [class.opacity-60]="gameToFind?.game_id === g.game_id"
                         class="w-full py-4 bg-gradient-to-r from-emerald-500 to-teal-600 
                                text-white font-bold text-lg rounded-xl shadow-lg
                                transition-all duration-300 hover:scale-105 
                                hover:shadow-emerald-500/80 disabled:cursor-default"
-                        [disabled]="playerToFind?.player_id === p.player_id">
-                  @if (playerToFind?.player_id === p.player_id) { Selected } @else { Select }
+                        [disabled]="gameToFind?.game_id === g.game_id">
+                  @if (gameToFind?.game_id === g.game_id) { Selected } @else { Select }
                 </button>
               </div>
             </div>

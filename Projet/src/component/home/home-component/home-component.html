@@ -1,20 +1,107 @@
-<div class="text-center mt-5 ">
-    <h1>Welcome to the Full Inventory App !</h1>
-</div>
+<!DOCTYPE html>
+<html lang="fr" class="h-full">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0"/>
+  <title>Éthernia - L'Appel des Ombres</title>
+  <meta name="description" content="Plongez dans un univers heroic-fantasy épique et créez votre légende.">
+  
+  <!-- Tailwind CSS CDN -->
+  <script src="https://cdn.tailwindcss.com"></script>
+  <script>
+    tailwind.config = {
+      theme: {
+        extend: {
+          fontFamily: {
+            sans: ['Inter', 'ui-sans-serif', 'system-ui', 'sans-serif'],
+          }
+        }
+      }
+    }
+  </script>
+  <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&display=swap" rel="stylesheet">
+</head>
 
-<div>
-<h1>Implemented features</h1>
-<ul>
-<li>Create Brigandyne character for players</li>
-</ul>
+<body class="h-full bg-gray-950 text-white overflow-x-hidden">
+  <!-- Fond animé avec particules subtiles (optionnel mais très classe) -->
+  <div class="fixed inset-0 -z-10">
+    <div class="absolute inset-0 bg-gradient-to-br from-gray-900 via-purple-900/50 to-violet-900"></div>
+    <div class="absolute inset-0 bg-[url('https://images.unsplash.com/photo-1534796636912-3b95b3ab5986?ixlib=rb-4.0.3&auto=format&fit=crop&q=80')] bg-cover bg-center opacity-20"></div>
+  </div>
 
-<h1>Upcoming features</h1>
-<ul>
-<li>Get Brigandyne characters for players</li>
-<li>Create Brigandyne characters for Game masters</li>
-<li>Get Brigandyne characters for Game masters</li>
-<li>... and more !!!</li>
-</ul>
+  <!-- Header / Hero -->
+  <header class="min-h-screen flex flex-col justify-center items-center text-center px-6 relative">
+    <div class="max-w-5xl mx-auto space-y-12">
+      <!-- Titre principal avec effet néon -->
+      <h1 class="text-6xl md:text-8xl lg:text-9xl font-black tracking-tighter">
+        <span class="bg-clip-text text-transparent bg-gradient-to-r from-emerald-400 via-cyan-400 to-purple-500 drop-shadow-2xl">
+          Full Inventory
+        </span>
+      </h1>
+      
+      <p class="text-2xl md:text-4xl font-light text-gray-300 max-w-3xl mx-auto leading-relaxed">
+        A TTRPG character sheet generator & manager
+      </p>
 
+      <p class="text-lg md:text-xl text-gray-400 max-w-2xl mx-auto mt-8">
+        Say goodbye to your old paper character sheets covered with beer and pizza stains !<br>
+        Dive in your favorite universe with this comprehensive character sheet manager.
+      </p>
 
-</div>
+      <!-- Boutons d'action (même style que précédemment) -->
+      <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-16">
+        <a href="app-creation-component" class="group relative inline-flex items-center justify-center px-12 py-6 
+                    bg-gradient-to-r from-emerald-500 to-teal-600 
+                    text-white text-xl md:text-2xl font-bold rounded-2xl 
+                    shadow-2xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-emerald-500/60">
+          <span class="relative z-10">Creation tool</span>
+          <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+        </a>
+
+        <a href="#" class="group relative inline-flex items-center justify-center px-12 py-6 
+                      bg-gradient-to-r from-purple-600 to-pink-600 
+                      text-white text-xl md:text-2xl font-bold rounded-2xl 
+                      shadow-2xl transform transition-all duration-300 
+                      hover:scale-105 hover:shadow-purple-500/60">
+          <span class="relative z-10">Go to your managed games & characters</span>
+          <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
+        </a>
+      </div>
+
+      <!-- Petite flèche vers le bas -->
+      <div class="mt-24 animate-bounce">
+        <svg class="w-10 h-10 mx-auto text-gray-500" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+          <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 14l-7 7m0 0l-7-7m7 7V3"></path>
+        </svg>
+      </div>
+    </div>
+  </header>
+
+  <!-- Section secondaire (exemple rapide) -->
+  <section class="py-24 px-6 bg-black/30">
+    <div class="max-w-6xl mx-auto grid md:grid-cols-3 gap-12 text-center">
+      <div class="space-y-4">
+        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-emerald-500 to-teal-600 rounded-full flex items-center justify-center text-4xl">⚔️</div>
+        <h3 class="text-2xl font-bold">Epic fights</h3>
+        <p class="text-gray-400">Stats management & dice systems</p>
+      </div>
+      <div class="space-y-4">
+        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-purple-500 to-pink-600 rounded-full flex items-center justify-center text-4xl">✨</div>
+        <h3 class="text-2xl font-bold">Ancient Magic</h3>
+        <p class="text-gray-400">Add spells and abilities to your character</p>
+      </div>
+      <div class="space-y-4">
+        <div class="w-20 h-20 mx-auto bg-gradient-to-br from-cyan-500 to-blue-600 rounded-full flex items-center justify-center text-4xl">👥</div>
+        <h3 class="text-2xl font-bold">Shared adventuring</h3>
+        <p class="text-gray-400">Play with friends, as your world evolves alongside you ! </p>
+      </div>
+    </div>
+  </section>
+
+  <!-- Footer léger -->
+  <footer class="py-12 text-center text-gray-500 text-sm">
+    © 2025 Full inventory – All rights reserved | Build with 🔥 and lots of coffee
+  </footer>
+</body>
+</html>

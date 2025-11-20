@@ -28,7 +28,7 @@ private readonly playerService = inject(PlayerService);
   }
   getPlayerById(id : number){
     this.playerToFind = this.players.find(p => p.player_id === id)
-
+    console.log(this.playerToFind)
     }
   }
 

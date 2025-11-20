@@ -6,8 +6,8 @@
       <div class="flex items-center">
   <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
     <img src="assets/images/full-inventory-logo.png"
-     alt="Full Inventory Logo"
-     class="w-10 h-10 object-contain" />
+    alt="Full Inventory Logo"
+    class="w-10 h-10 object-contain" />
 
     <span>Full Inventory</span>
   </a> 
@@ -16,11 +16,11 @@
       <!-- Liens Desktop -->
       <div class="hidden md:flex items-center space-x-8">
         <a routerLink="/" routerLinkActive="text-indigo-600 font-semibold"
-           class="text-gray-700 hover:text-indigo-600 transition">Home</a>
-        <a routerLink="/about" routerLinkActive="text-indigo-600 font-semibold"
-           class="text-gray-700 hover:text-indigo-600 transition">About</a>
-        <a routerLink="/contact" routerLinkActive="text-indigo-600 font-semibold"
-           class="text-gray-700 hover:text-indigo-600 transition">Contact</a>
+          class="text-gray-700 hover:text-indigo-600 transition">Home</a>
+        <a routerLink="/app-creation-component" routerLinkActive="text-indigo-600 font-semibold"
+          class="text-gray-700 hover:text-indigo-600 transition">Creation tool</a>
+        <a routerLink="/app-list-component" routerLinkActive="text-indigo-600 font-semibold"
+          class="text-gray-700 hover:text-indigo-600 transition">Lists</a>
 
         <!-- Bouton Profil / Login (Desktop) -->
         <div class="relative">
@@ -38,7 +38,7 @@
           @if (isLoginOpen()) {
             <div 
               class="absolute right-0 mt-2 w-80 bg-white rounded-xl shadow-2xl p-6 border border-gray-200 
-                     transition-all duration-300 origin-top-right z-40"
+                    transition-all duration-300 origin-top-right z-40"
               (mouseleave)="closeLogin()">
               <app-login-component #loginComponent></app-login-component>
             </div>
@@ -46,32 +46,7 @@
         </div>
       </div>
 
-      <!-- Bouton Mobile -->
-      <div class="md:hidden flex items-center">
-        <button (click)="toggleMobileMenu()" class="text-gray-700 hover:text-indigo-600">
-          <svg [class.hidden]="isMobileOpen()" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16"/>
-          </svg>
-          <svg [class.hidden]="!isMobileOpen()" class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M6 18L18 6M6 6l12 12"/>
-          </svg>
-        </button>
-      </div>
+
     </div>
   </div>
-
-  <!-- Menu Mobile -->
-  @if (isMobileOpen()) {
-    <div class="md:hidden bg-white border-t border-gray-200">
-      <div class="px-2 pt-2 pb-3 space-y-1">
-        <a routerLink="/" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Home</a>
-        <a routerLink="/about" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">About</a>
-        <a routerLink="/contact" class="block px-3 py-2 rounded-md text-base font-medium text-gray-700 hover:bg-gray-100">Contact</a>
-        
-        <div class="border-t pt-3 mt-3">
-          <app-login-component></app-login-component>
-        </div>
-      </div>
-    </div>
-  }
 </nav>

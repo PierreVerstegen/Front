@@ -1,58 +1,74 @@
 <div class="p-8 space-y-8">
-        <!-- Informations partagées par tous les types de personnages -->
+    <!-- Informations partagées par tous les types de personnages -->
     <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
 
-<div>
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-20 rounded-lg overflow-hidden">
 
-<p class="mt-2 opacity-90">Select a race</p>
-    <!-- Buttons -->
-    <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12">
-      <!-- Button 1 : Select Humain -->
-      <a (click)="charac_race ='Humain'" class="group relative inline-flex items-center justify-center w-80 h-20 
+            <p class="mt-2 opacity-90 text-xl font-bold">Select a race</p>
+            <!-- Buttons -->
+            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12">
+                <!-- Button 1 : Select Humain -->
+                <a (click)="humainStats()" class="group relative inline-flex items-center justify-center w-40 h-10 
                     bg-gradient-to-r from-emerald-500 to-teal-600 
-                    text-white text-2xl font-semibold rounded-2xl 
-                    shadow-2xl transform transition-all duration-300 
+                    text-white text-xl font-semibold rounded-xl 
+                    shadow-xl transform transition-all duration-300 
                     hover:scale-105 hover:shadow-emerald-500/50">
-        <span class="relative z-10">Humain</span>
-        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-      </a>
+                    <span class="relative z-10">Humain</span>
+                    <div
+                        class="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-20 transition-opacity">
+                    </div>
+                </a>
 
-      <!-- Button 2 : Select Elfe -->
-      <a (click)="charac_race ='Elfe'" class="group relative inline-flex items-center justify-center w-80 h-20 
+                <!-- Button 2 : Select Elfe -->
+                <a (click)="elfeStats()" class="group relative inline-flex items-center justify-center w-40 h-10 
                     bg-gradient-to-r from-purple-600 to-pink-600 
-                    text-white text-2xl font-semibold rounded-2xl 
-                    shadow-2xl transform transition-all duration-300 
+                    text-white text-xl font-semibold rounded-xl 
+                    shadow-xl transform transition-all duration-300 
                     hover:scale-105 hover:shadow-purple-500/50">
-        <span class="relative z-10">Elfe</span>
-        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-      </a>
+                    <span class="relative z-10">Elfe</span>
+                    <div
+                        class="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-20 transition-opacity">
+                    </div>
+                </a>
 
-      <!-- Button 3 : Select Nain -->
-      <a (click)="charac_race ='Nain'" class="group relative inline-flex items-center justify-center w-80 h-20 
+                <!-- Button 3 : Select Nain -->
+                <a (click)="nainStats()" class="group relative inline-flex items-center justify-center w-40 h-10 
                     bg-gradient-to-r from-emerald-500 to-teal-600 
-                    text-white text-2xl font-semibold rounded-2xl 
-                    shadow-2xl transform transition-all duration-300 
+                    text-white text-xl font-semibold rounded-xl 
+                    shadow-xl transform transition-all duration-300 
                     hover:scale-105 hover:shadow-emerald-500/50">
-        <span class="relative z-10">Nain</span>
-        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-      </a>
+                    <span class="relative z-10">Nain</span>
+                    <div
+                        class="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-20 transition-opacity">
+                    </div>
+                </a>
 
-      <!-- Button 3 : Select Halfelin -->
-      <a (click)="charac_race ='Nain'" class="group relative inline-flex items-center justify-center w-80 h-20 
-                    bg-gradient-to-r from-emerald-500 to-teal-600 
-                    text-white text-2xl font-semibold rounded-2xl 
-                    shadow-2xl transform transition-all duration-300 
-                    hover:scale-105 hover:shadow-emerald-500/50">
-        <span class="relative z-10">Halfelin</span>
-        <div class="absolute inset-0 rounded-2xl bg-white opacity-0 group-hover:opacity-20 transition-opacity"></div>
-      </a>
+                <!-- Button 3 : Select Halfelin -->
+                <a (click)="halfelinStats()" class="group relative inline-flex items-center justify-center w-40 h-10 
+                    bg-gradient-to-r from-purple-600 to-pink-600 
+                    text-white text-xl font-semibold rounded-xl 
+                    shadow-xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-purple-500/50">
+                    <span class="relative z-10">Halfelin</span>
+                    <div
+                        class="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-20 transition-opacity">
+                    </div>
+                </a>
+            </div>
+
+
+            @if (charac_race() !== ""){
+            <p class="mt-2 font-bold">Race selected : {{charac_race()}}</p>
+
+            @for (item of stats() | keyvalue; track $index) {
+            <div class="flex gap-2 justify-center mt-5">
+                {{item.key}}: {{item.value}} + 2D10
+            </div>
+            }
+
+            }
+
+
+
+        </div>
     </div>
-
-
-    @if (charac_race){
-
-
-
-    }
-    </div>
-</div>

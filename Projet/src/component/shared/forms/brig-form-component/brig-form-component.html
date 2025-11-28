@@ -1,8 +1,8 @@
 <div class="p-8 space-y-8">
     <!-- Informations partagées par tous les types de personnages -->
-    <div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
 
-        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-20 rounded-lg overflow-hidden">
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-10 rounded-lg overflow-hidden">
 
             <p class="mt-2 opacity-90 text-xl font-bold">Select a race</p>
             <!-- Buttons -->
@@ -57,18 +57,354 @@
             </div>
 
 
-            @if (charac_race() !== ""){
-            <p class="mt-2 font-bold">Race selected : {{charac_race()}}</p>
+            @if (charac_race() !== ("")){
+
+            <p class="mt-2 text-2xl font-bold">Race selected : {{charac_race()}}</p>
 
             @for (item of stats() | keyvalue; track $index) {
+            @if (item.key === 'magie'){
             <div class="flex gap-2 justify-center mt-5">
-                {{item.key}}: {{item.value}} + 2D10
+                <div class="flex rounded-xl justify-center bg-gradient-to-r from-indigo-600 to-teal-600 opacity-90 text-xl shadow-lg w-35 h-8">{{item.key}} :</div> <div class="flex rounded-xl text-md justify-center bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg w-15 h-8">{{item.value}}</div>
+                <button>🔆</button>
             </div>
             }
-
-            }
-
-
-
+            @else{
+            <div class="flex gap-2 justify-center mt-5">
+                <div class="flex rounded-xl justify-center opacity-90 text-xl shadow-lg w-35 h-8">{{item.key}} : </div><div class="flex rounded-xl text-md justify-center bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg w-15 h-8">{{item.value}}</div> {{affichage}}
+                <button>🎲</button>
+            </div>
+            }}
+            <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12">
+            <button (click)="generateAll()" [disabled]="isDisabled" class="group relative inline-flex items-center justify-center w-60 h-15 
+                    bg-gradient-to-r from-purple-600 to-pink-600 
+                    text-white text-xl font-semibold rounded-xl 
+                    shadow-xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-purple-500/50">
+                <span class="relative z-10">Generate stats 🎲</span>
+                <div class="absolute inset-0 rounded-xl bg-white opacity-0 group-hover:opacity-20 transition-opacity">
+                    
+                </div>
+            </button>
+        <button (click)="resetStats()">🔄</button>
+        
         </div>
+            <br>
+
+
+
+            <div class="flex items-center gap-2">
+                <label class="block mb-2 font-semibold text-white-700">Select archetype</label>
+                <div class="w-64">
+
+                    <select [(ngModel)]="selectedArchetype" class="w-full h-10 px-3 py-2 pr-8 
+                border border-gray-300 rounded-lg
+                bg-white text-gray-800
+                focus:outline-none focus:ring-2 focus:ring-purple-500 focus:border-purple-500
+                hover:border-gray-400
+                scrollbar-thin scrollbar-thumb-gray-400 scrollbar-track-gray-100
+                overflow-y-auto
+                transition-all duration-200
+                shadow-sm">
+
+                        <option value="Aigle" class="py-1.5">Aigle</option>
+                        <option value="Ane" class="py-1.5">Âne</option>
+                        <option value="Cerf" class="py-1.5">Cerf</option>
+                        <option value="Chat" class="py-1.5">Chat</option>
+                        <option value="Chien" class="py-1.5">Chien</option>
+                        <option value="Coq" class="py-1.5">Coq</option>
+                        <option value="Corbeau" class="py-1.5">Corbeau</option>
+                        <option value="Fourmi" class="py-1.5">Fourmi</option>
+                        <option value="Hibou" class="py-1.5">Hibou</option>
+                        <option value="Hyène" class="py-1.5">Hyène</option>
+                        <option value="Lapin" class="py-1.5">Lapin</option>
+                        <option value="Lion" class="py-1.5">Lion</option>
+                        <option value="Loup" class="py-1.5">Loup</option>
+                        <option value="Mouton" class="py-1.5">Mouton</option>
+                        <option value="Ours" class="py-1.5">Ours</option>
+                        <option value="Paon" class="py-1.5">Paon</option>
+                        <option value="Porc" class="py-1.5">Porc</option>
+                        <option value="Rat" class="py-1.5">Rat</option>
+                        <option value="Renard" class="py-1.5">Renard</option>
+                        <option value="Serpent" class="py-1.5">Serpent</option>
+                        <option value="Singe" class="py-1.5">Singe</option>
+                        <option value="Souris" class="py-1.5">Souris</option>
+                        <option value="Taureau" class="py-1.5">Taureau</option>
+                        <option value="Vautour" class="py-1.5">Vautour</option>
+                    </select>
+
+
+                </div>
+
+                @if(selectedArchetype() !== ""){
+                    <div class="w-80 items-center p-6 text-black bg-white rounded-xl shadow-lg">
+                        @for (item of archetypeDict| keyvalue; track $index){
+                            @if(item.key === selectedArchetype()){
+                            {{item.key}} : {{item.value}}
+                            }
+                        }
+                        <!-- Je teste un slider -->
+                        @if ((selectedArchetype() !== "Lapin") && (selectedArchetype() !== "Mouton") && selectedArchetype() !== "Singe" && selectedArchetype() !== "Souris"){
+                        <div class="w-50 items-center p-6 bg-white rounded-xl shadow-lg">
+                            <div>
+                                @if (selectedArchetype() === "Aigle"){
+                                    @if (bonusSlider1() === 0){Connaissance +5} @else {Perception +5} <br><br>
+                                }
+                                @if (selectedArchetype() === "Ane"){
+                                    @if (bonusSlider1() === 0){Habileté +5} @else {Survie +5} <br><br>
+                                }
+                                @if (selectedArchetype() === "Cerf"){
+                                    @if (bonusSlider1() === 0){Survie +5} @else {Mouvement +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Chat"){
+                                    @if (bonusSlider1() === 0){Force -5} @else {Volonté -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Chien"){
+                                    @if (bonusSlider1() === 0){Discrétion -5} @else {Habileté -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Coq"){
+                                    @if (bonusSlider1() === 0){Discrétion -5} @else {Habileté -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Corbeau"){
+                                    @if (bonusSlider1() === 0){Discrétion +5} @else {Survie +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Fourmi"){
+                                    @if (bonusSlider1() === 0){Connaissances +5} @else {Discrétion +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Hibou"){
+                                    @if (bonusSlider1() === 0){Habileté +5} @else {Perception +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Hyène"){
+                                    @if (bonusSlider1() === 0){Discrétion +5} @else {Mouvement +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Lion"){
+                                    @if (bonusSlider1() === 0){Connaissances -5} @else {Habileté -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Loup"){
+                                    @if (bonusSlider1() === 0){Perception +5} @else {Survie +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Ours"){
+                                    @if (bonusSlider1() === 0){Perception +5} @else {Survie +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Paon"){
+                                    @if (bonusSlider1() === 0){Connaissances +5} @else {Perception +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Porc"){
+                                    @if (bonusSlider1() === 0){Mouvement -5} @else {Connaissances -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Rat"){
+                                    @if (bonusSlider1() === 0){Connaissances +5} @else {Volonté +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Renard"){
+                                    @if (bonusSlider1() === 0){Habileté +5} @else {Discrétion +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Serpent"){
+                                    @if (bonusSlider1() === 0){Mouvement -5} @else {Perception -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Taureau"){
+                                    @if (bonusSlider1() === 0){Connaissances -5} @else {Habileté -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Vautour"){
+                                    @if (bonusSlider1() === 0){Connaissances +5} @else {Endurance +5}<br><br>
+                                }
+
+                            </div>
+                            <input type="range" min="0" max="1" step="1" [(ngModel)]="bonusSlider1"
+                                class="w-20 h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                [style.--value]="bonusSlider1()">
+                        </div>
+                        @if (selectedArchetype() == "Cerf" || selectedArchetype() == "Fourmi" || selectedArchetype() == "Hibou" || selectedArchetype() == "Hyène" || selectedArchetype() == "Ours" || selectedArchetype() == "Rat" || selectedArchetype() == "Renard"
+                        || selectedArchetype() == "Vautour"){
+                        <div class="w-50 items-center p-6 bg-white rounded-xl shadow-lg">
+                            <div>
+                                @if (selectedArchetype() === "Cerf"){
+                                    @if (bonusSlider2() === 0){Discrétion -5} @else {Tir -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Fourmi"){
+                                    @if (bonusSlider2() === 0){Perception -5} @else {Sociabilité -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Hibou"){
+                                    @if (bonusSlider2() === 0){Sociabilité +5} @else {Volonté +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Hyène"){
+                                    @if (bonusSlider2() === 0){Force -5} @else {Volonté -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Ours"){
+                                    @if (bonusSlider2() === 0){Connaissances -5} @else {Discrétion -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Rat"){
+                                    @if (bonusSlider2() === 0){Endurance +5} @else {Survie +5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Renard"){
+                                    @if (bonusSlider2() === 0){Endurance -5} @else {Force -5}<br><br>
+                                }
+                                @if (selectedArchetype() === "Vautour"){
+                                    @if (bonusSlider2() === 0){Mouvement -5} @else {Sociabilité -5}<br><br>
+                                }
+                                <input type="range" min="0" max="1" step="1" [(ngModel)]="bonusSlider2"
+                                    class="w-20 h-3 bg-gray-200 rounded-lg appearance-none cursor-pointer"
+                                    [style.--value]="bonusSlider2()">
+                            </div>
+                            
+                        </div>
+                        }
+                        <div class="flex flex-col sm:flex-row gap-8 justify-center items-center mt-12">
+                        <button (click)="updateStats()" [disabled]="isDisabled2" class="group relative inline-flex items-center justify-center w-50 h-10 
+                    bg-gradient-to-r from-purple-600 to-pink-600 
+                    text-white text-xl font-semibold rounded-xl 
+                    shadow-xl transform transition-all duration-300 
+                    hover:scale-105 hover:shadow-purple-500/50">Update stats</button><button (click)="resetStats()">🔄</button></div>
+                }
+                </div>
+                
+            }
+            </div>
+            }
+        </div>
+        
+        @if(charac_race() !== ""){
+            <div class="flex bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-20 rounded-lg overflow-hidden">
+                @if(charac_race() === "Humain"){
+                    <div class="text-xl font-semibold rounded-xl">
+                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                        <img src="assets/images/JDR_humains.png"
+                        alt="JDR_humains"
+                        class="w-150 h-150 object-contain" />
+                        </a>
+                    </div>
+                }
+                @if(charac_race() === "Elfe"){
+                    <div class="text-xl font-semibold rounded-xl">
+                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                        <img src="assets/images/JDR_elfes.png"
+                        alt="JDR_elfes"
+                        class="w-150 h-150 object-contain" />
+                        </a>
+                    </div>
+                }
+                @if(charac_race() === "Nain"){
+                    <div class="text-xl font-semibold rounded-xl">
+                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                        <img src="assets/images/JDR_nains.png"
+                        alt="JDR_nains"
+                        class="w-150 h-150 object-contain" />
+                        </a>
+                    </div>
+                }
+                @if(charac_race() === "Halfelin"){
+                    <div class="text-xl font-semibold rounded-xl">
+                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                        <img src="assets/images/JDR_hobbits.png"
+                        alt="JDR_halfelins"
+                        class="w-150 h-150 object-contain" />
+                        </a>
+                    </div>
+                }
+            @if(selectedArchetype() !== ""){
+                <div class="text-xl font-semibold rounded-md">
+                    <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                        @if (selectedArchetype() === 'Aigle'){
+                            <img src="assets/images/aigle.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Ane'){
+                            <img src="assets/images/ane.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Cerf'){
+                            <img src="assets/images/cerf.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Chat'){
+                            <img src="assets/images/chat.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Chien'){
+                            <img src="assets/images/chien.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Coq'){
+                            <img src="assets/images/coq.png"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Corbeau'){
+                            <img src="assets/images/corbeau.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Fourmi'){
+                            <img src="assets/images/fourmi.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Hibou'){
+                            <img src="assets/images/hibou.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Hyène'){
+                            <img src="assets/images/hyene.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Lapin'){
+                            <img src="assets/images/lapin.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Lion'){
+                            <img src="assets/images/lion.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Loup'){
+                            <img src="assets/images/loup.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Mouton'){
+                            <img src="assets/images/mouton.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Ours'){
+                            <img src="assets/images/ours.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Paon'){
+                            <img src="assets/images/paon.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Porc'){
+                            <img src="assets/images/porc.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Rat'){
+                            <img src="assets/images/rat.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Renard'){
+                            <img src="assets/images/renard.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Serpent'){
+                            <img src="assets/images/serpent.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Singe'){
+                            <img src="assets/images/singe.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Souris'){
+                            <img src="assets/images/souris.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Taureau'){
+                            <img src="assets/images/taureau.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+                        @if (selectedArchetype() === 'Vautour'){
+                            <img src="assets/images/vautour.jpg"
+                        alt="image_archetype"
+                        class="w-50 h-50 object-contain" />}
+
+                    </a>
+                </div>
+        }
+            </div>
+
+        }
+
+
     </div>

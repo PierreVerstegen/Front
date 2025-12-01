@@ -15,6 +15,7 @@ export class BrigFormComponent {
 characCreateService = inject(BrigCharacCreateService)
 charac_race = this.characCreateService.charac_race
 stats = this.characCreateService.stats
+computedStats = this.characCreateService.computedStats
 
 affichage = "+ 2D10"
 isDisabled = false;

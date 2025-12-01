@@ -87,7 +87,15 @@
             </button>
         <button (click)="resetStats()">🔄</button>
         
+        
+        </div><div class="text-2xl mt-3 text-white p-3">
+            @for (item of computedStats() | keyvalue; track $index){
+                <div class="flex gap-2 justify-center mt-5">
+                <div class="flex rounded-xl justify-center opacity-90 text-xl shadow-lg w-35 h-8">{{item.key}} : </div><div class="flex rounded-xl text-md justify-center bg-gradient-to-r from-emerald-500 to-teal-600 shadow-lg w-15 h-8">{{item.value}}</div>
+            </div>
+        }
         </div>
+
             <br>
 
 
@@ -264,147 +272,908 @@
         @if(charac_race() !== ""){
             <div class="flex bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-20 rounded-lg overflow-hidden">
                 @if(charac_race() === "Humain"){
-                    <div class="text-xl font-semibold rounded-xl">
-                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                    <div class="text-md font-semibold w-150 rounded-xl">
+                        <h1 class="text-2xl font-bold">Humain</h1>
+                        <a routerLink="/" class="flex items-center space-x-2 text-xl mt-3 font-bold text-indigo-600">
                         <img src="assets/images/JDR_humains.png"
                         alt="JDR_humains"
                         class="w-150 h-150 object-contain" />
                         </a>
+                        <p class="flex text-justify w-100 p-5 mt-2">
+                            CONQUÊTE ET AVIDITÉ
+                            Les Humains constituent le peuple majoritaire parmi les
+humanoïdes, et ont réussi au fil des siècles à s’imposer dans
+l’Empire et les XIII Royaumes où 9 habitants sur 10 sont
+Humains. Leurs cultures, leurs langages, leurs usages sont si
+nombreux et différents qu’il serait impossible de les décrire tous :
+comment croire qu’un cavalier barbare des steppes de la Volgie
+est issu du même moule que ce magistrat falconais ?
+Les Humains sont présents sur presque tout le continent
+grâce à leur ténacité, leur polyvalence, leur astuce et leur
+soif de découverte. Ils apprennent vite, s’adaptent à tous
+les milieux et se multiplient bien plus rapidement que les
+autres. Ils sont avec les Nains, le peuple le plus évolué dans les
+sciences et les techniques, et leurs inventeurs redoublent d’effort
+et d’ingéniosité pour construire les outils de demain.
+Malheureusement, c’est un peuple invariablement avide de
+pouvoir, de conquêtes et de richesses, qui peut parfois renier foi et
+honneur pour un territoire ou un sac rempli d’or. C’est pourquoi
+les Humains restent un peuple divisé, où l’orgueil de chacun
+empêche toute coalition des seigneurs et des pays.
+Même la Sainte Papauté n’a pu apaiser les tensions internes dans
+les XIII Royaumes en instaurant « La Divine Paix ». Capables du
+meilleur comme du pire, il est très difficile pour les autres
+peuples d’accorder une pleine confiance aux Humains, pour
+qui les alliances et les serments s’oublient de génération en
+génération.
+                        </p>
                     </div>
                 }
                 @if(charac_race() === "Elfe"){
-                    <div class="text-xl font-semibold rounded-xl">
-                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                    <div class="text-md font-semibold w-150 rounded-xl">
+                        <h1 class="text-2xl font-bold">Elfe</h1>
+                        <a routerLink="/" class="flex items-center space-x-2 mt-3 text-xl font-bold text-indigo-600">
                         <img src="assets/images/JDR_elfes.png"
                         alt="JDR_elfes"
                         class="w-150 h-150 object-contain" />
                         </a>
+                        <p class="flex text-justify w-100 p-5 mt-2">
+LA GLOIRE DU PASSÉ
+D’une beauté et d’une intelligence rares, les Elfes ont
+longtemps été le peuple le plus admiré du Monde Con-
+nu. Mystérieux, rusés et raffinés, ils étaient autrefois les
+protecteurs des bois et des lieux légendaires, et s’étaient
+établis dans toutes les grandes forêts du continent. Nul
+n’osait les affronter tant leurs archers et leur magie fai-
+saient frémir jusqu’aux plus hardis des combattants.
+Pourtant, c’est leur faible natalité qui amenuisa petit à
+petit leur hégémonie : les grands héros d’hier n’avaient
+pas de descendance, si bien que les dirigeants s’en sou-
+cièrent et finirent par en trouver la cause dans de très
+anciens grimoires. Plus les Elfes demeuraient loin de
+leur terre originelle, et plus ils devenaient stériles. De
+même, leur longévité exceptionnelle était due à leur
+territoire sacré : les Elfes qui n’en avaient jamais foulé le
+sol vieillissaient à peine moins que les Humains. Le
+Grand Retour commença alors. Un exode qui dura plu-
+sieurs décennies et où la grande majorité des Elfes re-
+joignit leur terre natale : l’île de Faëlyr.
+Les Elfes ne sont plus aujourd’hui que l’ombre de leur
+glorieux passé. Pire, leur mode de vie n’a pas évolué de-
+puis des siècles : leurs costumes désuets, leur langage
+ampoulé, leurs rites et leur armement traditionnels
+sont restés les mêmes que jadis. Même leurs villes sem-
+blent figées dans le temps. Tandis que les Nains ont in-
+venté l’imprimerie et que les Humains guerroient à
+coups de canons, les Elfes continuent de ne jurer que
+par la magie et l’aide de leurs alliés animaux. Pour com-
+bien de temps encore ?
+Les aventuriers Elfes qui parcourent le monde sont con-
+sidérés par leurs pairs comme des êtres d’un courage
+peu commun ou comme des fous selon les mentalités.
+Pourtant, ils pourraient peut-être représenter l’espoir
+d’une renaissance de la grande nation elfique.</p>
                     </div>
                 }
                 @if(charac_race() === "Nain"){
-                    <div class="text-xl font-semibold rounded-xl">
-                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                    <div class="text-md font-semibold w-150 rounded-xl">
+                        <h1 class="text-2xl font-bold">Nain</h1>
+                        <a routerLink="/" class="flex items-center space-x-2 mt-3 text-xl font-bold text-indigo-600">
                         <img src="assets/images/JDR_nains.png"
                         alt="JDR_nains"
                         class="w-150 h-150 object-contain" />
                         </a>
+                        <p class="flex text-justify w-100 p-1 mt-2">
+                            LE BASTION DES INVENTEURS
+                            Fiers guerriers et travailleurs acharnés, les Nains
+sont connus pour leur valeur et leur loyauté dans
+tous les domaines. Malgré leur petite taille et leur
+manque de finesse, ils figurent parmi les peuples les
+plus respectés de Thalios.
+Originaires d’Orründ, les Nains n’ont pas toujours
+été des alliés de l’Humanité, et depuis leur défaite
+face à une alliance de Royaumes Humains (sur ordre
+du Pape qui avait déclaré le Pays Nain anathème), le
+Roi Agrim – encore aujourd’hui Roi des Nains - a
+capitulé et accepté les conditions de la reddition
+naine : la conversion des Nains à la religion d’Abel (et
+le rejet de leur culte des Âmes Anciennes), le paie-
+ment d’une taxe annuelle à la Sainte Papauté et le
+partage des inventions naines avec l’Humanité.
+En effet, les Nains sont reconnus pour leur grande
+habileté et leurs inventeurs de génie. Ainsi on leur
+doit l’imprimerie, qui révolutionne la diffusion du
+savoir depuis quelques années, mais aussi les ter-
+ribles lance-feux qui causent des ravages sur les
+champs de batailles.
+Les Nains profitent également de leur statut spécial
+au sein des XIII Royaumes pour s’occuper des ques-
+tions d’argent : l’usure étant mal perçue par l’Église,
+les Nains sont connus pour leurs prêts à intérêt, et la
+Banque Naine est la plus riche du continent
+(devançant même les banques de Sélénie).
+Les Nains sont aussi un peuple de passionnés, et
+ceux qu’on trouve sur les routes le sont souvent en
+raison d’un défi, d’une peine de cœur, ou d’une ven-
+geance à accomplir.
+                        </p>
                     </div>
                 }
                 @if(charac_race() === "Halfelin"){
-                    <div class="text-xl font-semibold rounded-xl">
-                        <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                    <div class="text-md font-semibold w-150 rounded-xl">
+                        <h1 class="text-2xl font-bold">Halfelin</h1>
+                        <a routerLink="/" class="flex items-center space-x-2 mt-3 text-xl font-bold text-indigo-600">
                         <img src="assets/images/JDR_hobbits.png"
                         alt="JDR_halfelins"
                         class="w-150 h-150 object-contain" />
                         </a>
+                        <p class="flex text-justify w-100 p-5 mt-2">
+LES HALFELINS
+L’ANTIQUE MALÉDICTION
+Les Halfelins sont originaires de Jüj, la terre des pe-
+tits. Ils étaient autrefois humains, mais leur pays fut
+victime d’une terrible malédiction des Archimages : la
+malédiction des quatre pieds, qui fit rapetisser les ha-
+bitants, qui ne peuvent jamais dépasser quatre pieds
+de haut. Cet enchantement fut prononcé il y a des
+siècles pour punir l’orgueil démesuré du Roi-Prêtre
+Marcomir qui souhaitait égaler les Douze
+Maîtres. Encore aujourd’hui, une famille
+humaine qui s’installerait à Jüj deviendrait en
+quelques années aussi petite que ses habitants. Et
+leurs enfants rejoindraient les rangs des Halfelins.
+C’est pourquoi ce pays est un des seuls, avec la Sainte
+Papauté, qui ne craint pas les invasions : aucun sei-
+gneur ne souhaiterait envahir un pays maudit. Jüj
+n’est pas pour autant un pays totalement en paix, et
+les guerres intérieures entre seigneurs Halfelins ne
+sont pas rares.
+Même s’ils sont tolérés dans les XIII Royaumes, les
+Petites-Gens sont la plupart du temps méprisés et
+sujets de moqueries. Certains sont même enlevés
+pour servir de bouffons aux seigneurs humains car ils
+en sont friands : ils s’amusent de leurs pitreries et les
+frappent lorsque l’envie leur prend.
+Affables et bons vivants, les Halfelins sont néanmoins
+très appréciés pour leur savoir-vivre, leurs talents de
+cuisinier et leur bonne éducation. Leur taille réduite
+est ainsi compensée par une sociabilité peu commune
+et un sens des affaires redoutable. Casaniers et con-
+servateurs, peu nombreux sont ceux qui partent à
+l’aventure, mais ceux qui relèvent ce défi ne le font
+que rarement pour l’argent : ils souhaitent davantage
+échapper à une vie morne et répétitive.
+                        </p>
                     </div>
                 }
             @if(selectedArchetype() !== ""){
-                <div class="text-xl font-semibold rounded-md">
-                    <a routerLink="/" class="flex items-center space-x-2 text-xl font-bold text-indigo-600">
+                <div class="text-sm font-medium rounded-md">
+                    <a routerLink="/" class="flex items-center space-x-2 p-5 text-xl font-bold text-indigo-600">
                         @if (selectedArchetype() === 'Aigle'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Aigle</label>
                             <img src="assets/images/aigle.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" />
+                            </div>}
                         @if (selectedArchetype() === 'Ane'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Âne</label>
                             <img src="assets/images/ane.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" />
+                            </div>}
                         @if (selectedArchetype() === 'Cerf'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Cerf</label>
                             <img src="assets/images/cerf.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" />
+                            </div>}
                         @if (selectedArchetype() === 'Chat'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Chat</label>
                             <img src="assets/images/chat.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" />
+                            </div>}
                         @if (selectedArchetype() === 'Chien'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Chien</label>
                             <img src="assets/images/chien.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" />
+                            </div>}
                         @if (selectedArchetype() === 'Coq'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Coq</label>
                             <img src="assets/images/coq.png"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" />
+                            </div>}
                         @if (selectedArchetype() === 'Corbeau'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Corbeau</label>
                             <img src="assets/images/corbeau.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Fourmi'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Fourmi</label>
                             <img src="assets/images/fourmi.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Hibou'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Hibou</label>
                             <img src="assets/images/hibou.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Hyène'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Hyène</label>
                             <img src="assets/images/hyene.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Lapin'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Lapin</label>
                             <img src="assets/images/lapin.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Lion'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Lion</label>
                             <img src="assets/images/lion.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Loup'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Loup</label>
                             <img src="assets/images/loup.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Mouton'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Mouton</label>
                             <img src="assets/images/mouton.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Ours'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Ours</label>
                             <img src="assets/images/ours.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
-                        @if (selectedArchetype() === 'Paon'){
+                        class="w-50 h-50 object-contain" /></div>}
+                        @if (selectedArchetype() === 'Paon'){<div>
+                            <label class="text-2xl text-white font-bold">Paon</label>
                             <img src="assets/images/paon.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Porc'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Porc</label>
                             <img src="assets/images/porc.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Rat'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Rat</label>
                             <img src="assets/images/rat.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Renard'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Renard</label>
                             <img src="assets/images/renard.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Serpent'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Serpent</label>
                             <img src="assets/images/serpent.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Singe'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Singe</label>
                             <img src="assets/images/singe.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Souris'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Souris</label>
                             <img src="assets/images/souris.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Taureau'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Taureau</label>
                             <img src="assets/images/taureau.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
+                        class="w-50 h-50 object-contain" /></div>}
                         @if (selectedArchetype() === 'Vautour'){
+                            <div>
+                            <label class="text-2xl text-white font-bold">Vautour</label>
                             <img src="assets/images/vautour.jpg"
                         alt="image_archetype"
-                        class="w-50 h-50 object-contain" />}
-
+                        class="w-50 h-50 object-contain" /></div>}
                     </a>
+                    @if (selectedArchetype() === 'Aigle'){<p class="flex text-justify w-50 p-5">
+L’Aigle est un gagnant et il le sait.
+Il ne veut fréquenter que les hautes
+sphères et ne se pardonne aucun
+échec. Il aime à s’entourer des
+meilleurs et leur servir d’exemple
+en matière de droiture et d’effica-
+cité. Exigeant envers lui-même et
+distant, il peut vite sembler con-
+descendant avec les autres. L’Aigle
+peut avoir des origines humbles
+mais son ambition démesurée le
+hissera vers les sommets ou il
+mourra en essayant. Doté d’un fort
+magnétisme, on remarque son
+ombre même s’il reste silencieux.</p>}
+                        @if (selectedArchetype() === 'Ane'){<p class="flex text-justify w-50 p-5 mt-2">L'Âne est un être simple et travail-
+leur, mais souvent buté lorsqu’il a
+une idée en tête, quitte à se fâcher
+avec ses proches. Il n'est pas ambi-
+tieux et aime les petits plaisirs que
+sa vie lui offre : un repas chez lui
+autour du feu a pour lui des airs de
+paradis. Désespérément naïf et
+franc, il se montre aussi moqueur
+et espiègle et il rira tôt ou tard des
+maladresses d’autrui toutes dents
+dehors… car qui aime bien châtie
+bien. Cible privilégiée des rusés et
+des manipulateurs, c'est surtout
+un être dévoué et doux, qui a un
+don pour attirer en tant qu'ami,
+des bonnes âmes comme lui.</p>}
+                        @if (selectedArchetype() === 'Cerf'){<p class="flex text-justify w-50 p-5 mt-2 ">Majestueux mais avec un charme
+sauvage et farouche, le Cerf in-
+carne une certaine noblesse rus-
+tique, loyale et conservatrice. C'est
+la contrepartie rurale du Lion, et
+tout en retenue. Le Cerf est un me-
+neur qui pratique la guerre dans
+les règles de l’art. Il se veut juste et
+reconnu par ses pairs, ce qui le
+mène à être exigeant envers lui-
+même dans le meilleur des cas ou
+au contraire autoritaire et mépri-
+sant dans le pire. Malgré son cha-
+risme, c'est un séducteur jaloux et
+territorial qui affrontera tout rival
+avec une férocité insoupçonnée.</p>}
+                        @if (selectedArchetype() === 'Chat'){<p class="flex text-justify w-50 p-5 mt-2 ">Svelte et vif, le Chat est une
+énigme. Indépendant et suave,
+joueur et secret, c’est un être libre
+qui fuit les attaches et les con-
+traintes. Dans une situation qui
+l’intéresse, le Chat fait montre
+d’extraordinaires ressources
+d’adaptation, de ruse, d’intuition
+ou de cruauté. Sans cela, il est per-
+çu comme paresseux et amorphe.
+Grand séducteur, le Chat aime
+qu’on le cajole mais il est souvent
+trop égoïste pour donner autre
+chose qu’une chaleureuse estime.</p>}
+                        @if (selectedArchetype() === 'Chien'){<p class="flex text-justify w-50 p-5 mt-2 ">Fidèle, enthousiaste, impulsif, le
+Chien est l’ami qui sera là pour
+vous donner conseil, assistance et
+joie de vivre dans les coups durs.
+Son amitié est inconditionnelle et
+peut facilement obscurcir son ju-
+gement : il défendra son ami quelle
+que soit sa moralité avec une éner-
+gie inépuisable. Néanmoins, ja-
+loux et courageux, il n’hésitera pas
+à montrer les crocs face à toute
+rivalité et la perspective d’un com-
+bat ne le fera pas reculer.</p>}
+                        @if (selectedArchetype() === 'Coq'){<p class="flex text-justify w-50 p-5 mt-2 ">Beauté, prestance et combativité
+sont les maîtres-mots du Coq. Le
+silence l’angoisse, il a besoin de
+lumière, de bruit et d’agitation et
+s’il peut en être la cause, c’est en-
+core mieux. Le Coq n’est pas obli-
+gatoirement un fauteur de
+troubles mais son caractère entier
+et emporté et sa volonté d’être tou-
+jours au-devant de la scène ne le
+laissent pas longtemps dans
+l’ombre. Enfin, le Coq collectionne
+les conquêtes, et son allure, son
+panache et son élan lui assurent
+toujours un succès.</p>}
+                        @if (selectedArchetype() === 'Corbeau'){<p class="flex text-justify w-50 p-5 mt-2 ">
+Sombre et perspicace, le Corbeau
+est un nomade qui semble amener
+la mort et la malchance partout où
+il va. Il a toutefois appris à en rire
+et nombreux sont les Corbeaux
+munis d’un sombre sens de l’hu-
+mour tout en cynisme et acidité.
+Mystérieux et intelligent, il a une
+vue lucide du monde qui l’entoure
+mais ne la partage pas volontiers.
+Cette intelligence peut prendre la
+forme d’une sombre détermina-
+tion car le Corbeau est rancunier et
+vengeur et il sait prendre son
+temps</p>}
+                        @if (selectedArchetype() === 'Fourmi'){<p class="flex text-justify w-50 p-5 mt-2 ">On pense à la fourmi lorsqu’on a
+devant soi une tâche fastidieuse
+requérant méthode et patience.
+Dans le monde, la fourmi est dis-
+crète, peu brillante, souvent faible
+physiquement et sans don particu-
+lier. Elle s’est construite à force
+d’efforts et de patience, de rigueur
+et de travail. Elle en conçoit une
+certaine fierté et se méfie de tout
+ce qui n’est pas chiffrable et maî-
+trisé. Peu ambitieuse et modeste,
+c’est un être simple qui connait sa
+place et la valeur du travail
+d’équipe.</p>}
+                        @if (selectedArchetype() === 'Hibou'){<p class="flex text-justify w-50 p-5 mt-2 ">Instruit, amoureux du savoir, ravi
+de le partager et d’éduquer les
+autres, le Hibou est un mélange
+enthousiaste d’explorateur et de
+scientifique. Obsédé par la con-
+naissance, il est capable de grands
+voyages pour l’atteindre, ses visées
+sont souvent élevées et il ne goûte
+guère les petites réalisations. Con-
+séquence de cette intelligence exi-
+geante, le Hibou est un donneur-
+de-leçons impénitent qui sera le
+premier à vous faire remarquer
+votre échec si vous n’avez pas suivi
+son conseil.</p>}
+                        @if (selectedArchetype() === 'Hyène'){<p class="flex text-justify w-50 p-5 mt-2 ">La méchanceté semble naturelle
+chez cette personne peu recom-
+mandable qui traîne son sourire
+cruel et nerveux partout où elle va.
+Joyeuse persécutrice des faibles, la
+Hyène a une loyauté bancale au-
+près des forts, qu'un rien fait
+s'écrouler. Elle se voit souvent diri-
+ger une bande, mais organiser des
+plans et discipliner des troupes est
+au-dessus de ses capacités. Elle
+préfère suivre un Taureau ou un
+Loup et se nourrir des restes. Prag-
+matique, aucune basse besogne
+n'est assez dégradante pour elle.</p>}
+                        @if (selectedArchetype() === 'Lapin'){<p class="flex text-justify w-50 p-5 mt-2 ">Insouciant et affable, le Lapin est
+un compagnon agréable et plein
+d’entrain. Il aime les belles choses,
+les ambiances chaleureuses et
+douces, il est respectueux des ma-
+nières d’autrui et attaché aux
+siens. C’est aussi un lâche indé-
+crottable qui vous donnera raison
+pour que la dispute s’arrête, ne
+vous défendra pas si une bagarre
+éclate, pas plus qu’il n’assumera
+les conséquences de la nuit avec
+ce(tte) charmant(e) inconnu(e) la
+veille. Pour le Lapin, le monde est
+assez grand pour tous et la fuite
+est la meilleure des conclusions.</p>}
+                        @if (selectedArchetype() === 'Lion'){<p class="flex text-justify w-50 p-5 mt-2 ">Le charisme et la force qui va avec,
+le Lion est né pour régner. Son
+apparence formidable, sa puis-
+sance physique et sociale le met-
+tent sans effort ni gesticulations
+sur le devant de la scène. Brave, le
+Lion se place volontiers au-devant
+de ses troupes qu’il aime soumises
+et admiratives. Lorsqu’il atteint le
+poste convoité, il fait passer son
+plaisir avant ses sujets. Territorial
+et jaloux, il fera tout pour garder
+sa place au sommet et voit souvent
+des ennemis et des rivaux là où il
+n’y a que de trop brillants alliés…</p>}
+                        @if (selectedArchetype() === 'Loup'){<p class="flex text-justify w-50 p-5 mt-2 ">
+Taciturne et farouche, le Loup est
+un être violent et libre muni d’un
+charisme fauve. Le Loup se sent à
+l’étroit partout, seuls les grands
+espaces lui conviennent et il com-
+bat férocement toute laisse qu’on
+serait tenté de lui mettre. Distant
+et dur, parfois cruel, il décourage
+par son attitude les flatteurs et les
+faux-amis mais ceux qui convien-
+nent à son code d’honneur particu-
+lier trouvent en lui un allié pré-
+cieux. Le Loup est un ami froid et
+solide, grondant et expéditif mais
+à la loyauté sans égale.</p>}
+                        @if (selectedArchetype() === 'Mouton'){<p class="flex text-justify w-50 p-5 mt-2 ">Le Mouton est un être grégaire et
+conformiste. Peu attaché à sa li-
+berté qu’il troque volontiers contre
+la sécurité et le confort, il peut
+même accepter d’être un peu mal-
+mené et exploité si cela lui permet
+d’avoir une vie agréable, entouré
+de ses proches. Amateur de ragots
+et de rumeurs, il aime les ap-
+prendre et les propager, particu-
+lièrement s’il peut accuser un
+« bouc émissaire » (avec ou sans
+preuves). Malgré cela, le Mouton
+est souvent un ami d’une grande
+gentillesse qui vous tendra la main
+en cas de besoin… tant que la situa-
+tion ne devient pas dangereuse.</p>}
+                        @if (selectedArchetype() === 'Ours'){<p class="flex text-justify w-50 p-5 mt-2 ">Grand et fort, l’Ours est sûr de lui,
+bonhomme et optimiste. Il est
+puissant et se servir de cette force
+ne le dérange pas le moins du
+monde. Il aime les tâches simples
+qui lui permettent de se reposer
+longuement ensuite. L’Ours est
+volontiers protecteur et prend om-
+brage des attaques faites à ses pro-
+tégés. Sincère et amical, il a une
+tendance à une naïveté philo-
+sophe, l’amenant à voir le bon côté
+chez chacun. Toutefois, la colère
+d’un Ours dupé est terrible et il
+redevient à ce moment une force
+hors de tout contrôle balayant tout
+sur son passage.</p>}
+                        @if (selectedArchetype() === 'Paon'){<p class="flex text-justify w-50 p-5 mt-2 ">Peu d'individus sont aussi sou-
+cieux de leur apparence que le
+Paon. Être social par excellence,
+suave et distingué, il est hélas
+d'une superficialité navrante. Le
+Paon se nourrit de cancan, mais il
+préfère qu'on parle de lui, de sa
+parure exceptionnelle, de son
+phrasé fleuri et des délicates fra-
+grances de son parfum. C'est inva-
+riablement une personne raffinée
+et curieuse mais qui se lasse vite de
+tout. Le Paon est exagérément
+tourné vers lui-même et son
+propre bonheur, c'est pourquoi il
+est très prudent avec les risques
+qui se présentent à lui et prend très
+mal l'indifférence et le dédain.</p>}
+                        @if (selectedArchetype() === 'Porc'){<p class="flex text-justify w-50 p-5 mt-2 ">Le Porc est doté d’un physique so-
+lide et d’un amour de la vie à toute
+épreuve. Son désir sexuel est aussi
+développé que son amour de la
+bonne chère, du vin et des
+franches rigolades pleine de cama-
+raderie.
+Le Porc s’adapte à tout, c’est un
+optimiste qui ne pense pas au len-
+demain. Colérique et doté d’un
+sale caractère, il pardonne vite.
+Drôle, il devient rapidement pé-
+nible mais il tient à ses amis et sait
+se faire pardonner par les sourires
+et la bonne humeur qu’il affiche en
+tous lieux.</p>}
+                        @if (selectedArchetype() === 'Rat'){<p class="flex text-justify w-50 p-5 mt-2 ">Sournois et vicieux, le Rat con-
+jugue un corps maigrelet avec un
+caractère sombre et vil. Sa fai-
+blesse physique est compensée par
+son manque total de scrupules, son
+absence de noblesse et un esprit
+d’initiative affûté. Le Rat est avant
+tout un survivant, s’il faut se ca-
+cher, mentir, se courber devant les
+puissants pour vivre un jour de
+plus, il le fera sans hésiter. Le Rat a
+vite appris que seul il était faible et
+il a adopté un esprit collectif et
+rassembleur qui contraste avec sa
+personnalité égoïste.</p>}
+                        @if (selectedArchetype() === 'Renard'){<p class="flex text-justify w-50 p-5 mt-2 ">La ruse incarnée, le Renard est un
+être fin et habile, prompt à trouver
+mille solutions pour un problème.
+Charmeur, il sait plaire mais aussi
+s’effacer pour se soustraire à la
+colère des puissants. Le Renard est
+égoïste et indépendant, combinai-
+son qui en fait un compagnon ins-
+table à l’amitié tiède. Mais c’est un
+être aux ressources infinies, muni
+d’une folle capacité d’adaptation,
+pouvant s’adresser aux rois
+comme aux ruffians avec la même
+aisance, ce qui fascine ses compa-
+gnons et lui assure son avenir.</p>}
+                        @if (selectedArchetype() === 'Serpent'){<p class="flex text-justify w-50 p-5 mt-2 ">Froid et patient, le Serpent attend
+sa proie. Prédateur à l’apparence
+banale, c’est un être tout en con-
+trôle et en mystère. Lorsque le Ser-
+pent parle, il sait être persuasif et
+caressant mais sans baratin, tou-
+jours avec un flegme souriant et
+des mots simples et choisis. Dénué
+de morale, il tue sans cruauté et
+trompe sans remords, tout est af-
+faire de fin. Dans un groupe, le
+Serpent est incapable de donner
+entièrement sa confiance, même
+au milieu de personnes qu’il aime
+et estime : il gardera toujours une
+part de lui secrète, au cas où.</p>}
+                        @if (selectedArchetype() === 'Singe'){<p class="flex text-justify w-50 p-5 mt-2 ">Le bouffon, impertinent et drôle,
+correspond au Singe. C’est un au-
+dacieux à sa manière, se moquant
+des forts et échappant à leurs co-
+lères en fuyant à toute jambes. Pa-
+resseux mais athlétique, l’humeur
+changeante et le verbe haut, le
+Singe aime commander mais pas
+les responsabilités, il aime les
+voyages mais pas leurs buts et se
+bat avec férocité mais n’aime pas
+les mises à mort. Roublard dans
+l’âme et baratineur, le Singe est
+rusé mais les plans de longue ha-
+leine le font bailler.</p>}
+                        @if (selectedArchetype() === 'Souris'){<p class="flex text-justify w-50 p-5 mt-2 ">Pendant lumineux du Rat, la Sou-
+ris est un personnage petit et agile,
+craintif mais adaptable et plein
+d’énergie. La Souris ne peut rester
+en place longtemps, il faut agir,
+bouger, aller voir ce qui se passe là
+-bas, puis fuir à toutes jambes.
+La Souris tient à la vie, supporte
+mal les conflits et l’intimidation,
+mais a un esprit de découverte in-
+nocent comme un enfant peut
+l’avoir. Sincère, elle s’attache vite
+aux autres et une fois sa réserve
+passée, reste une alliée loyale et
+débrouillarde.</p>}
+                        @if (selectedArchetype() === 'Taureau'){<p class="flex text-justify w-50 p-5 mt-2 ">Virilité et force, le Taureau est un
+concentré de tout cela dans un ca-
+ractère ombrageux. Contraire-
+ment à l’Ours, sa force ne le rend
+pas protecteur et il s’en sert volon-
+tiers pour piétiner ceux qui sont
+sur sa route.
+Fier de lui, il n’aime pas les rivali-
+tés larvées et il a besoin de savoir
+qui est le plus fort et vite. Fruste, le
+Taureau attire pourtant les flat-
+teurs et les peureux, impression-
+nés par sa stature. Malgré tous ses
+défauts, le Taureau reste un com-
+pagnon optimiste et têtu, bien
+agréable d’avoir à ses côtés.</p>}
+                        @if (selectedArchetype() === 'Vautour'){<p class="flex text-justify w-50 p-5 mt-2 ">Cachant souvent un esprit prag-
+matique et acéré, l’apparence
+maigre et maladive du Vautour ne
+l’ont pas rendu humble ou timide
+pour autant. Au contraire, cet être
+intelligent et fin a une langue de
+fiel, un humour cynique et une
+grande patience. C’est un adver-
+saire rancunier, sans morale et
+sans volonté de briller ce qui le
+rend d’autant plus dangereux. So-
+cialement, le Vautour est repous-
+sant de prime abord mais pourtant
+très entouré et écouté. Lucide, le
+Vautour est un être de sagesse,
+mais c’est une sagesse sombre et
+nihiliste.</p>}
                 </div>
         }
             </div>
 
         }
-
-
     </div>
+
+    <div class="grid grid-cols-1 md:grid-cols-2 gap-1">
+        <div class="bg-gradient-to-r from-indigo-600 to-purple-600 text-white p-10 rounded-lg overflow-hidden">
+<div class="bg-gradient-to-r from-emerald-500 to-teal-600 text-2xl font-bold text-center p-5 rounded-lg overflow-hidden">Select a career</div>
+<div class="flex">
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Agents.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Agents, domestiques & fidèles
+    </span>
+</div>
+</button>
+
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Nobles.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Aristocrates, nobles & seigneurs
+    </span>
+</div>
+</button>
+</div>
+
+<div class="flex">
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Artisans.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Artisans, commerçants & manoeuvres
+    </span>
+</div>
+</button>
+
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Bandits.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Bandits, brigands & coupe-jarrets
+    </span>
+</div>
+</button>
+</div>
+
+<div class="flex">
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Saltimbanques.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Bateleurs, artistes & saltimbanques
+    </span>
+</div>
+</button>
+
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Erudits.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Érudits, doctes & lettrés
+    </span>
+</div>
+</button>
+</div>
+
+<div class="flex">
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Roublards.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Filous, roublards & malandrins
+    </span>
+</div>
+</button>
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Guerriers.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Guerriers, bretteurs & spadassins
+    </span>
+</div>
+</button>
+</div>
+
+<div class="flex">
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Cavaliers.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Hommes d'armes, soldats & cavaliers
+    </span>
+</div>
+</button>
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Sorciers.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Magiciens, sorciers & thaumaturges
+    </span>
+</div>
+</button>
+</div>
+
+<div class="flex">
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Gueux.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Parias, gueux & traine-misères
+    </span>
+</div>
+</button>
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Paysans.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Paysans, marins & forestiers
+    </span>
+</div>
+</button>
+</div>
+
+<button class="group relative overflow-hidden rounded-2xl">
+<img 
+    src="assets/images/Religieux.jpg" 
+    class="absolute inset-0 h-full w-full object-cover transition duration-500 group-hover:scale-110"/>
+<!-- Double overlay : sombre + glow sur hover -->
+<div class="absolute inset-0 bg-gradient-to-t from-black/70 via-black/30 to-transparent"></div>
+
+<div class="relative p-10 text-center">
+    <span class="inline-block rounded-full border-4 border-white/80 bg-white/10 px-8 py-4 text-xl font-medium text-white backdrop-blur-sm shadow-2xl transition group-hover:border-white group-hover:bg-white/20">
+Religieux, devôts & moines
+    </span>
+</div>
+</button>
+
+    </div></div>

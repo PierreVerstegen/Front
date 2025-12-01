@@ -1,4 +1,4 @@
-import { Injectable, signal } from '@angular/core';
+import { computed, Injectable, signal } from '@angular/core';
 
 @Injectable({
   providedIn: 'root',
@@ -20,7 +20,24 @@ export class BrigCharacCreateService {
   tir: 0,
   volonte: 0,
 });
-  
+
+computedStats = computed(() => {
+  const s = this.stats();
+  const combat = s['combat'] ?? 0;
+  const mouvement = s['mouvement'] ?? 0;
+  const perception = s['perception'] ?? 0;
+  const connaissances = s['connaissances'] ?? 0;
+  const force = s['force'] ?? 0;
+  const endurance = s['endurance'] ?? 0;
+  const volonte = s['volonte'] ?? 0;
+
+  return {
+    vitalite: Math.floor(force / 5 + endurance / 5 + volonte / 10),
+    sangfroid: Math.floor(volonte / 5 + connaissances / 5 + combat /10), // exemple
+    init: Math.floor(combat /10 + mouvement / 10 + perception /10), // exemple
+  };
+});
+
   selectedArchetype = signal<string>("");
   //Jet de dés : méthode
   throw2D10(value : number) : number {
@@ -32,6 +49,8 @@ export class BrigCharacCreateService {
 
 bonusSlider1 = signal<number>(0)
 bonusSlider2 = signal<number>(0)
+
+
 
 humainStats(){
 this.charac_race.set('Humain')
@@ -117,6 +136,8 @@ generateAll() {
     return result;
   });
 }
+
+
 
 updateStats() {
   this.stats.update(stats => {
